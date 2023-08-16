@@ -7,12 +7,12 @@ services:
     volumes:
       - static-data:/vol/static
     environment:
-      - DB_HOST=db
-      - DB_NAME={DB_NAME}
-      - DB_USER={DB_USER}
-      - DB_PASS={DB_PASS}
-      - SECRET_KEY={DJANGO_SECRET_KEY}
-      - ALLOWED_HOSTS={DJANGO_ALLOWED_HOSTS}
+      - DB_HOST=mindfulness-app-db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
     depends_on:
       - mindfulness-app-db
     restart: always
@@ -21,9 +21,9 @@ services:
   mindfulness-app-db:
     image: postgres:13-alpine
     environment:
-      - POSTGRES_USER={DB_USER}
-      - POSTGRES_PASSWORD={DB_PASS}
-      - POSTGRES_DB={DB_NAME}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
     restart: always

@@ -23,15 +23,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
-ALLOWED_HOSTS = ['127.0.0.1']
-#ALLOWED_HOSTS.extend(
-#    filter(
-#        None,
-#        os.environ.get('ALLOWED_HOSTS', '').split(','),
-#        )
-#    )
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS.extend(
+    filter(
+        None,
+        os.environ.get('ALLOWED_HOSTS', '').split(','),
+    )
+)
 
 # Application definition
 
@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'mindfulness.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mindfulness-app-db',
-        'USER': 'ravil',
-        'PASSWORD': 'changeme',
-        'HOST': 'mindfulness-app-db',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
         'PORT': 5432,
     }
 }
