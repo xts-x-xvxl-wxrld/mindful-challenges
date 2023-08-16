@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Your challenges{% endblock %}
+
+{% block content %}
+
+<div class="challenge-container">
+    {% if challengeObj %}
+    <div class="button-container">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="previous-challenge">Previous Challenge
+            {% load static %}
+            <img src="{% static 'resources/iconmonstr-angel-left-circle-thin.svg' %}" alt="Previous Challenge">
+            </button>
+        </form>
+    </div>
+
+    <div class="challenge-card">
+        <h2>{{ challengeObj.title }}</h2>
+        <p>{{ challengeObj.description }}</p>
+        <p>Benefits: {{ challengeObj.benefits }}</p>
+        <p>Time Duration: {{ challengeObj.time_duration }}</p>
+    </div>
+
+    <div class="button-container">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="next-challenge">Next Challenge
+            <img src="{% static 'resources/iconmonstr-angel-right-circle-thin.svg' %}" alt="Next Reflection">
+            </button>
+        </form>
+    </div>
+
+    {% else %}
+    <div class="challenge-container">
+        <div class="challenge-card">
+            <p>You don't have any custom challenges yet. <a href="{% url 'make_challenge' %}">Want to create a custom challenge?</a></p>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

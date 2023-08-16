@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Cabinet{% endblock %}
+
+{% block content %}
+
+    <div class="challenge-container">
+        <div class="box">
+            <h2>Reflections</h2>
+            <p>Review and edit your reflections of the challenges.</p>
+            <div class="link-box">
+                <a href="{% url 'reflections' %}">Go to: Reflections</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Custom Challenges</h2>
+            <p>Take use of the custom challenges you created.</p>
+            <div class="link-box">
+                <a href="{% url 'your_challenges' %}">Go to: Custom Challenges</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

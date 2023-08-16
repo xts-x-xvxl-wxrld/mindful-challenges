@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Your Website{% endblock %}
+
+{% block content %}
+
+    <div class="centered-container">
+        <div class="box">
+            <h2>Challenges</h2>
+            <p>You can find challenges of various difficulty, theme and time duration in this section.</p>
+            <div class="link-box">
+                <a href="{% url 'challenges' %}">Go to: Challenges</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-container">
+        <div class="box">
+            <h2>Cabinet</h2>
+            <p>You can find your saved reflections and created challenges</p>
+            <div class="link-box">
+                <a href="{% url 'cabinet' %}">Go to: Cabinet</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Create Challenges</h2>
+            <p>Create custom challenges by using our simple tool</p>
+            <div class="link-box">
+                <a href="{% url 'make_challenge' %}">Go to: Create Challenges</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

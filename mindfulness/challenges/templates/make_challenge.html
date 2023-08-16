@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}make challenges{% endblock %}
+
+{% block content %}
+    <div class="centered-container">
+        <div class="challenge-card">
+            <h2>Create Your Custom Challenge</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
+            <button type="submit" name="save_challenge">
+                Save Challenge
+                {% load static %}
+                <img src="{% static 'resources/iconmonstr-download-thin.svg' %}" alt="Save Challenge">
+            </button>
+        </div>
+    </div>
+{% endblock %}

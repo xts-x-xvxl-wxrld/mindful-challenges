@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="challenge-container">
+
+    <div class="challenge-card">
+        <h2>{{ challenge.title }}</h2>
+        <p>{{ challenge.description }}</p>
+        <p>Benefits: {{ challenge.benefits }}</p>
+        <p>Time Duration: {{ challenge.time_duration }}</p>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="next-challenge"> Next Challenge
+                {% load static %}
+                <img src="{% static 'resources/iconmonstr-angel-right-circle-thin.svg' %}" alt="Another Challenge">
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <h2>Give a rating and write a reflection:</h2>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                {{ reflection_form.as_p }}
+                <button type="submit" name="reflection_submit"> Save Reflection
+                    {% load static %}
+                    <img src="{% static 'resources/iconmonstr-download-thin.svg' %}" alt="Save Reflection">
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

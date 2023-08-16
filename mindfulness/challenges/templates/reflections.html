@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}reflections{% endblock %}
+
+{% block content %}
+
+  <div class="challenge-container">
+  {% if challenge and reflectionText %}
+    <div class="button-container">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="previous-reflection">Previous Reflection
+            {% load static %}
+            <img src="{% static 'resources/iconmonstr-angel-left-circle-thin.svg' %}" alt="Previous Reflection">
+            </button>
+        </form>
+    </div>
+
+    <div class="challenge-card">
+      <h2>{{ challenge.title }}</h2>
+      <p>{{ challenge.description }}</p>
+      <p>Benefits: {{ challenge.benefits }}</p>
+      <p>Time Duration: {{ challenge.time_duration }}</p>
+    </div>
+
+    <div class="reflection-card">
+      <h2>Reflection for: {{ challenge.title }}</h2>
+      <p>{{ reflectionText }}</p>
+      <p>Date: {{ reflectionDate }}</p>
+    </div>
+
+    <div class="button-container">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="next-reflection">Next Reflection
+            {% load static %}
+            <img src="{% static 'resources/iconmonstr-angel-right-circle-thin.svg' %}" alt="Next Reflection">
+            </button>
+        </form>
+    </div>
+      {% else %}
+      <p>You don't have any reflections yet. <a href="{% url 'challenges' %}">Want to create a reflection?</a></p>
+    {% endif %}
+  </div>
+
+{% endblock %}

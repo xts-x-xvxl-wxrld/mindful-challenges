@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'Shadows';
+    src: url("../fonts/ShadowsIntoLight-Regular.ttf") format('truetype');
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: radial-gradient( yellow , orange, red, brown, purple, blue);
+    background-size: cover;
+    font-family: 'Shadows', sans-serif;
+    font-size: 30px;
+}
+
+.box-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.centered-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+.box {
+    width: 30%;
+    background: radial-gradient(coral, orange);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 25px 0px 25px rgba(0, 0, 0, 1);
+    margin: 0 50px;
+}
+
+.box a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.link-box {
+    background-color: rgba(255, 99, 71, 0.5);
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.link-box p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.link-box a {
+    color: #333;
+    text-decoration: none;
+}
+
+.cabinet-container-left {
+    display: flex;
+    justify-content: left;
+    margin-left: 30px;
+    margin-top: 30px;
+    }
+
+.cabinet-container-right {
+    display: flex;
+    justify-content: right;
+    margin-right: 30px;
+    margin-top: 30px;
+    }
+
+.challenge-container {
+    display: flex;
+    flex-direction: column; /* Set flex-direction to column */
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set a reasonable height to the parent container */
+}
+
+.challenge-container form {
+    margin-right: 10px; /* Adjust this value to control the space between buttons */
+}
+
+.challenge-container button {
+    background-color: pink;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.challenge-container form {
+    margin-right: 10px;
+}
+
+.pink-button {
+    background-color: pink;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.challenge-card {
+  width: 600px;
+  margin-right: 30px;
+  padding: 20px;
+  background: radial-gradient(orange, coral);
+  display: block;
+  word-wrap: break-word;
+}
+
+.reflection-card {
+  width: 600px;
+  margin-right: 30px;
+  padding: 20px;
+  background: radial-gradient(purple, blue);
+  display: block;
+  word-wrap: break-word;
+}
+
