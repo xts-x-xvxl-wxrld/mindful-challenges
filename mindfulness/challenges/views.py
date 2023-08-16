@@ -26,7 +26,7 @@ def challenges(request):
     if current_index >= len(challengesList) or current_index < 0:
         messages.info(request, 'You have completed all challenges')
         request.session['current_challenge_index'] = 0
-        return redirect('home')
+        current_index = request.session.get('current_challenge_index')
 
     challengeObj = challengesList[current_index]
 
