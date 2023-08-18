@@ -12,7 +12,7 @@ ENV APP_PORT=9000
 
 USER root
 
-RUN RUN apk update && \
+RUN apk update && \
     apk add --no-cache bash && \
     mkdir -p /vol/static && \
     chmod 755 /vol/static && \
