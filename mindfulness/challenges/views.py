@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm, ReflectionForm, CustomChallengeForm
+from .forms import CustomUserCreationForm, ReflectionForm, CustomChallengeForm, CustomAuthenticationForm
 from django.contrib.auth import authenticate, login
 from .models import Challenge, Reflection, CustomChallenge
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
 
 
 @login_required(login_url='sign_in')
@@ -134,7 +133,7 @@ def reflections(request):
 
 def signIn(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
+        form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -143,7 +142,7 @@ def signIn(request):
                 login(request, user)
                 return redirect('home')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     return render(request, 'sign_in.html', {'form': form})
 
 

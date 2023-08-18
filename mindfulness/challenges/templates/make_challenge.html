@@ -6,7 +6,7 @@
 <div class="challenge-container">
     <div class="challenge-card">
         <h2>Create Your Custom Challenge</h2>
-        <form method="post" class="django-form">
+        <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" name="save_challenge">

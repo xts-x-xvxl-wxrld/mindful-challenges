@@ -20,8 +20,8 @@
     </div>
 
     <div>
-        <h2>Give a rating and write a reflection:</h2>
-        <div>
+        <div class="reflection-card">
+            <h2>Give a rating and write a reflection:</h2>
             <form method="post">
                 {% csrf_token %}
                 {{ reflection_form.as_p }}
@@ -32,6 +32,5 @@
             </form>
         </div>
     </div>
-
 </div>
 {% endblock %}
