@@ -17,8 +17,6 @@ server {
     ssl_certificate /etc/letsencrypt/live/mindful-challenges.xyz/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/mindful-challenges.xyz/privkey.pem;
 
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     location / {
         uwsgi_pass  ${APP_HOST}:${APP_PORT};
