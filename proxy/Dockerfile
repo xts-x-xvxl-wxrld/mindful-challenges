@@ -19,7 +19,7 @@ RUN apk update && \
     touch /etc/nginx/conf.d/default.conf && \
     chown nginx:nginx /etc/nginx/conf.d/default.conf && \
     chmod +x /run.sh && \
-    chmod +x /init-letsencrypt.sh \
+    chmod +x /init-letsencrypt.sh
 
 VOLUME /vol/static
 
