@@ -13,7 +13,7 @@ ENV APP_PORT=9000
 USER root
 
 RUN apk update && \
-    apk add --no-cache bash && \
+    apk add --no-cache bash docker-compose && \
     mkdir -p /vol/static && \
     chmod 755 /vol/static && \
     touch /etc/nginx/conf.d/default.conf && \
