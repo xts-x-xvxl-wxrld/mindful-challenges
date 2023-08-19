@@ -5,7 +5,7 @@ services:
     build:
       context: .
     volumes:
-      - static-data:/vol/static
+      - /vol/static:/vol/static
     environment:
       - DB_HOST=mindfulness-app-db
       - DB_NAME=${DB_NAME}
@@ -16,6 +16,9 @@ services:
     depends_on:
       - mindfulness-app-db
     restart: always
+    ports:
+      - "9000:9000"
+
 
 
   mindfulness-app-db:
@@ -29,20 +32,19 @@ services:
     restart: always
 
 
-  proxy:
-    build:
-      context: ./proxy
-    restart: always
-    depends_on:
-      - meditation-app
-    ports:
-      - "80:8080"
-      - "443:8443"
-    volumes:
-      - static-data:/vol/static
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+#  proxy:
+#    build:
+#      context: ./proxy
+#    restart: always
+#    depends_on:
+#      - meditation-app
+#    ports:
+#      - "80:8080"
+#      - "443:8443"
+#    volumes:
+#      - static-data:/vol/static
+#      - /etc/letsencrypt:/etc/letsencrypt
+#      - /var/www/certbot:/var/www/certbot
 
 volumes:
   postgres-data:
-  static-data:

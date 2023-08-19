@@ -9,8 +9,7 @@ ENV LISTEN_PORT=8443
 ENV APP_HOST=meditation-app
 ENV APP_PORT=9000
 
-RUN apk update && \
-    apk add --no-cache certbot certbot-nginx && \
+RUN
     mkdir -p /vol/static && \
     chmod 755 /vol/static && \
     touch /etc/nginx/conf.d/default.conf && \
