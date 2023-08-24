@@ -6,6 +6,7 @@ services:
       context: .
     volumes:
       - /vol/static:/vol/static
+      - ./mindfulness:/mindfulness/
     environment:
       - DB_HOST=mindfulness-app-db
       - DB_NAME=${DB_NAME}
@@ -14,12 +15,12 @@ services:
       - SECRET_KEY=${DJANGO_SECRET_KEY}
       - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DEBUG=${DEBUG}
     depends_on:
       - mindfulness-app-db
     restart: always
     ports:
       - "9000:9000"
-
 
 
   mindfulness-app-db:
