@@ -10,11 +10,10 @@ class CustomUser(AbstractUser):
 
 
 class Challenge(models.Model):
-    title = models.CharField(max_length=250)
+    title = models.CharField()
     description = models.TextField()
     benefits = models.TextField()
-    time_duration = models.CharField(max_length=100)
-    created_by = models.CharField(max_length=100, blank=True, null=True)
+    time_duration = models.CharField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     completed_by = models.ManyToManyField(get_user_model(), through='Reflection')
@@ -34,10 +33,10 @@ class Reflection(models.Model):
 
 
 class CustomChallenge(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField()
     description = models.TextField()
     benefits = models.TextField()
-    time_duration = models.CharField(max_length=50)
+    time_duration = models.CharField()
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
