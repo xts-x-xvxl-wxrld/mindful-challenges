@@ -10,8 +10,8 @@ def generateChallenge():
     response = openai.ChatCompletion.create(
         model=MODEL,
         messages=[
-            {'role': 'system', 'content': 'do not provide bullet points, split answer into paragraphs, provide short '
-                                          'answer for time duration'},
+            {'role': 'system', 'content': 'do not provide bullet points, split answer into paragraphs,'
+                                          'answer for time duration less than 100 characters,for title under 250 char'},
             {'role': 'user', 'content': 'Write me a meditation challenge that will have a title, well written '
                                         'description of how to preform the meditation in under 40 words, '
                                         'benefits, time duration.'}
