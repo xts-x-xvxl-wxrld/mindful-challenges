@@ -8,7 +8,7 @@ COPY ./mindfulness /mindfulness
 COPY ./scripts /scripts
 
 WORKDIR /mindfulness
-EXPOSE 8000
+EXPOSE 9000
 
 RUN apk update && \
     apk add --no-cache \

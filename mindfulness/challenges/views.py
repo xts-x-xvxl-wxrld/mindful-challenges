@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from .models import Challenge, Reflection, CustomChallenge
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .challenge_api import generateChallenge
 
 
 @login_required(login_url='sign_in')
@@ -18,35 +19,29 @@ def cabinet(request):
 
 @login_required(login_url='sign_in')
 def challenges(request):
-    challengesList = list(Challenge.objects.all())
-    current_index = request.session.get('current_challenge_index', 0)
     reflection_form = ReflectionForm()
 
-    if current_index >= len(challengesList) or current_index < 0:
-        messages.info(request, 'You have completed all challenges')
-        request.session['current_challenge_index'] = 0
-        current_index = request.session.get('current_challenge_index')
-
-    challengeObj = challengesList[current_index]
+    titleAi, descriptionAi, benefitsAi, time_durationAi = generateChallenge()
+    context = {'title': titleAi, 'description': descriptionAi, 'benefits': benefitsAi, 'time_duration': time_durationAi}
 
     if request.method == 'POST':
-        if 'next-challenge' in request.POST:
-            request.session['current_challenge_index'] = current_index + 1
-            return redirect('challenges')
-        elif 'reflection_submit' in request.POST:
+        if 'reflection_submit' in request.POST:
             reflection_form = ReflectionForm(request.POST)
             if reflection_form.is_valid():
+                createChallenge = Challenge.objects.create(title=titleAi, description=descriptionAi,
+                                                           benefits=benefitsAi, time_duration=time_durationAi)
+                createChallenge.save()
                 reflection = reflection_form.save(commit=False)
                 reflection.user = request.user
-                reflection.challenge = challengeObj
+                reflection.challenge = createChallenge
                 reflection.save()
-                messages.info(request, 'Your reflection has been saved in your cabinet')
-                request.session['current_challenge_index'] = current_index + 1
                 return redirect('challenges')
             else:
                 print('form invalid')
+        elif 'next_challenge' in request.POST:
+            return redirect('challenges')
 
-    return render(request, 'challenges.html', {'challenge': challengeObj, 'reflection_form': reflection_form})
+    return render(request, 'challenges.html', {'context': context, 'reflection_form': reflection_form})
 
 
 @login_required(login_url='sign_in')
@@ -58,16 +53,11 @@ def makeYourChallenge(request):
             challenge.user = request.user
             challenge.save()
             messages.info(request, 'Your meditation challenge has been saved in your cabinet')
-            return redirect('saved_challenges')
+            return redirect('your_challenges')
     else:
         form = CustomChallengeForm()
 
     return render(request, 'make_challenge.html', {'form': form})
-
-
-@login_required(login_url='sign_in')
-def savedChallenges(request):
-    return render(request, 'saved_challenges.html')
 
 
 @login_required(login_url='sign_in')

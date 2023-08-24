@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import home, signIn, signUp, challenges, cabinet, makeYourChallenge, \
-                savedChallenges, reflections, yourChallenges
+                reflections, yourChallenges
 
 
 urlpatterns = [
@@ -11,6 +11,5 @@ urlpatterns = [
     path('challenges/', challenges, name='challenges'),
     path('make-challenge/', makeYourChallenge, name='make_challenge'),
     path('reflections/', reflections, name='reflections'),
-    path('saved-challenges/', savedChallenges, name='saved_challenges'),
     path('your-challenges/', yourChallenges, name='your_challenges'),
 ]

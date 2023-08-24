@@ -8,18 +8,19 @@ services:
       context: .
     ports:
       - "8000:8000"
-    environment:
-      - DEBUG=1
     volumes:
       - ./mindfulness:/mindfulness/
+    env_file:
+      - .env
     command: python manage.py runserver 0.0.0.0:8000
 
 
   mindfulness-app-db:
     image: postgres:13
-    environment:
-      - POSTGRES_USER=ravil
-      - POSTGRES_PASSWORD=changeme
-      - POSTGRES_DB=mindfulness-app-db
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+volumes:
+  postgres-data:

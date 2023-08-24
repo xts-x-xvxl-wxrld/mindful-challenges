@@ -4,10 +4,10 @@
 
 <div class="challenge-container">
     <div class="challenge-card">
-        <h2>{{ challenge.title }}</h2>
-        <p>{{ challenge.description }}</p>
-        <p>Benefits: {{ challenge.benefits }}</p>
-        <p>Time Duration: {{ challenge.time_duration }}</p>
+        <h1>{{ context.title }}</h1>
+        <p>{{ context.description }}</p>
+        <p>{{ context.benefits }}</p>
+        <p>{{ context.time_duration }}</p>
         <div>
             <form method="post">
                 {% csrf_token %}

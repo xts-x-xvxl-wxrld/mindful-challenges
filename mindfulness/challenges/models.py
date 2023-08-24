@@ -10,10 +10,10 @@ class CustomUser(AbstractUser):
 
 
 class Challenge(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=250)
     description = models.TextField()
     benefits = models.TextField()
-    time_duration = models.CharField(max_length=50)
+    time_duration = models.CharField(max_length=100)
     created_by = models.CharField(max_length=100, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
